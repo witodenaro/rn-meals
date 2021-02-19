@@ -1,62 +1,77 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, Platform} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import {enableScreens} from 'react-native-screens';
 
-import CategoriesScreen from './screens/CategoriesScreen';
-import CategoryMealsScreen from './screens/CategoryMealsScreen';
-import FavoritesScreen from './screens/FavoritesScreen';
-import FiltersScreen from './screens/FiltersScreen';
+import SCREENS from './screens/Screens';
 
+import CATEGORIES from './mock/categories';
 import COLORS from './constants/Colors';
 
 const Stack = createStackNavigator();
+
+enableScreens();
+
+const DefaultNavigationStyles = {
+  headerStyle: {
+    backgroundColor: COLORS.primary,
+    ...Platform.select({
+      ios: {
+        backgroundColor: 'white',
+      },
+    }),
+  },
+  headerTitleStyle: {
+    ...Platform.select({
+      ios: {
+        color: COLORS.primary,
+      },
+      default: {
+        color: 'white',
+      },
+    }),
+  },
+};
 
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
+  const renderedScreens = useMemo(
+    () =>
+      Object.keys(SCREENS).map((name) => {
+        const {title, Screen} = SCREENS[name];
+
+        const findDynamicCategoryTitle = (route) =>
+          CATEGORIES.find((category) => category.id === route.params.categoryId)
+            .title;
+
+        return (
+          <Stack.Screen
+            key={name}
+            name={name}
+            component={Screen}
+            options={({route}) => {
+              return {
+                title: title || findDynamicCategoryTitle(route),
+              };
+            }}
+          />
+        );
+      }),
+    [SCREENS],
+  );
+
   return (
     <NavigationContainer>
       <SafeAreaView style={styles.screen}>
         <Stack.Navigator
-          screenOptions={{
-            headerStyle: {
-              backgroundColor: COLORS.primary,
-              ...Platform.select({
-                ios: {
-                  backgroundColor: 'white',
-                },
-              }),
-            },
-            headerTitleStyle: {
-              ...Platform.select({
-                ios: {
-                  color: COLORS.primary,
-                },
-                default: {
-                  color: 'white',
-                },
-              }),
-            },
-          }}
+          screenOptions={DefaultNavigationStyles}
           initialRouteName="categories">
-          <Stack.Screen
-            name="categories"
-            options={{
-              headerTitle: 'Categories',
-            }}
-            component={CategoriesScreen}
-          />
-          <Stack.Screen
-            name="categoryMeals"
-            options={({route}) => ({
-              headerTitle: route.params.title,
-            })}
-            component={CategoryMealsScreen}
-          />
+          {renderedScreens}
         </Stack.Navigator>
       </SafeAreaView>
     </NavigationContainer>

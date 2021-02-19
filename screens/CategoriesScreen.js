@@ -5,13 +5,13 @@ import {FlatList, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import CATEGORIES from '../mock/categories';
 
 const renderGridItem = ({item, navigation}) => {
-  const {title, color} = item;
+  const {title, color, id} = item;
 
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate('categoryMeals', {
-          title,
+        navigation.navigate('CategoryMeals', {
+          categoryId: id,
         })
       }
       style={[styles.categoryItem, {backgroundColor: color}]}>

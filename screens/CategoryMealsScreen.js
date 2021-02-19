@@ -1,8 +1,9 @@
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const CategoryMealsScreen = () => {
+  console.log('render category meals');
   const navigation = useNavigation();
 
   return (
