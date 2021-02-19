@@ -50,12 +50,7 @@ const App = () => {
             key={name}
             name={name}
             component={Screen}
-            options={({route}) => {
-              return {
-                title:
-                  typeof title === 'function' ? title(route.params.id) : title,
-              };
-            }}
+            options={{title}}
           />
         );
       }),

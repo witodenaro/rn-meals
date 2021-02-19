@@ -5,14 +5,25 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import MealItem from '../components/MealItem';
 
 import MEALS from '../mock/meals';
+import {useSelector} from 'react-redux';
+import {createSelectCategoryTitleById} from '../redux/categories/categories.selectors';
 
 const CategoryMealsScreen = () => {
   const route = useRoute();
+  const navigation = useNavigation();
+
   const categoryId = route.params.id;
+  const categoryTitle = useSelector(createSelectCategoryTitleById(categoryId));
 
   const filteredMeals = useMemo(() =>
     MEALS.filter((meal) => meal.categoryIds.includes(categoryId), [categoryId]),
   );
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: categoryTitle,
+    });
+  }, []);
 
   const renderMealItem = ({item}) => <MealItem mealItem={item} />;
 

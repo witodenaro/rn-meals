@@ -4,9 +4,6 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 import FiltersScreen from '../screens/FiltersScreen';
 import MealDetails from '../screens/MealDetailsScreen';
 
-import CATEGORIES_DATA from '../redux/categories/categories.data';
-import MEALS_DATA from '../redux/meals/meals.data';
-
 const SCREENS = {
   Categories: {
     Screen: CategoriesScreen,
@@ -14,8 +11,7 @@ const SCREENS = {
   },
   CategoryMeals: {
     Screen: CategoryMealsScreen,
-    title: (categoryId) =>
-      CATEGORIES_DATA.find((category) => category.id === categoryId).title,
+    title: 'Category',
   },
   Favorites: {
     Screen: FavoritesScreen,
@@ -27,7 +23,7 @@ const SCREENS = {
   },
   MealDetails: {
     Screen: MealDetails,
-    title: (mealId) => MEALS_DATA.find((meal) => meal.id === mealId).title,
+    title: 'Meal details',
   },
 };
 

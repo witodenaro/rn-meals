@@ -8,6 +8,7 @@ export const selectCategoriesData = createSelector(
 );
 
 export const createSelectCategoryTitleById = (id) =>
-  createSelector(selectCategoriesData, (data) =>
-    data.find((category) => category.id === id),
+  createSelector(
+    selectCategoriesData,
+    (data) => data.find((category) => category.id === id).title,
   );
