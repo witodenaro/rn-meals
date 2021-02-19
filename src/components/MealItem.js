@@ -24,22 +24,19 @@ const MealItem = ({mealItem}) => {
     default: TouchableOpacity,
   });
 
-  const renderedLoading = useMemo(() =>
-    isLoading ? (
-      <ActivityIndicator style={styles.image} color="#000" size="large" />
-    ) : null,
+  const renderedLoading = useMemo(
+    () =>
+      isLoading ? (
+        <ActivityIndicator
+          style={styles.loadingIndicator}
+          color="#000"
+          size="large"
+        />
+      ) : null,
+    [isLoading],
   );
 
-  const onLoadEnd = useCallback(() => {
-    setIsLoading(false);
-  }, []);
-
-  const onLoadStart = useCallback(() => {
-    setIsLoading(true);
-  }, []);
-
   const onItemClick = useCallback(() => {
-    console.log('MEAL CLICK');
     navigation.navigate('MealDetails', {
       id,
     });
@@ -54,10 +51,10 @@ const MealItem = ({mealItem}) => {
             source={{
               uri: imageUrl,
             }}
-            onLoadEnd={onLoadEnd}
-            onLoadStart={onLoadStart}
+            onLoadStart={() => setIsLoading(true)}
+            onLoadEnd={() => setIsLoading(false)}
             resizeMode={'cover'}
-            style={[styles.image, {display: isLoading ? 'none' : 'flex'}]}
+            style={[styles.image]}
           />
           <View style={styles.information}>
             <Text style={styles.title}>{title}</Text>
@@ -113,6 +110,11 @@ const styles = StyleSheet.create({
   icon: {
     width: 20,
     marginRight: 10,
+  },
+  loadingIndicator: {
+    position: 'absolute',
+    top: 100,
+    left: '50%',
   },
 });
 
