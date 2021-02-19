@@ -3,7 +3,6 @@ import {Button, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 const CategoryMealsScreen = () => {
-  console.log('render category meals');
   const navigation = useNavigation();
 
   return (
