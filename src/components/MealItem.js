@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {
   StyleSheet,
@@ -13,8 +14,10 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import COLORS from '../constants/Colors';
 
 const MealItem = ({mealItem}) => {
-  const {title, imageUrl, affordability, complexity, duration} = mealItem;
+  const {id, title, imageUrl, affordability, complexity, duration} = mealItem;
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigation = useNavigation();
 
   const TouchableComponent = Platform.select({
     android: TouchableNativeFeedback,
@@ -29,15 +32,22 @@ const MealItem = ({mealItem}) => {
 
   const onLoadEnd = useCallback(() => {
     setIsLoading(false);
-  });
+  }, []);
 
   const onLoadStart = useCallback(() => {
     setIsLoading(true);
-  });
+  }, []);
+
+  const onItemClick = useCallback(() => {
+    console.log('MEAL CLICK');
+    navigation.navigate('MealDetails', {
+      id,
+    });
+  }, []);
 
   return (
     <View style={styles.itemWrapper}>
-      <TouchableComponent>
+      <TouchableComponent onPress={onItemClick}>
         <View style={styles.item}>
           {renderedLoading}
           <Image

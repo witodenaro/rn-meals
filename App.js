@@ -5,9 +5,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
 
-import SCREENS from './src/screens/Screens';
+import SCREENS from './src/config/Screens';
 
-import CATEGORIES from './src/mock/categories';
 import COLORS from './src/constants/Colors';
 
 const Stack = createStackNavigator();
@@ -45,10 +44,7 @@ const App = () => {
       Object.keys(SCREENS).map((name) => {
         const {title, Screen} = SCREENS[name];
 
-        const findDynamicCategoryTitle = (route) =>
-          CATEGORIES.find((category) => category.id === route.params.categoryId)
-            .title;
-
+        console.log('SCREEN RENDER');
         return (
           <Stack.Screen
             key={name}
@@ -56,7 +52,8 @@ const App = () => {
             component={Screen}
             options={({route}) => {
               return {
-                title: title || findDynamicCategoryTitle(route),
+                title:
+                  typeof title === 'function' ? title(route.params.id) : title,
               };
             }}
           />

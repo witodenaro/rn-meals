@@ -7,10 +7,8 @@ import MealItem from '../components/MealItem';
 import MEALS from '../mock/meals';
 
 const CategoryMealsScreen = () => {
-  const navigation = useNavigation();
-
   const route = useRoute();
-  const categoryId = route.params.categoryId;
+  const categoryId = route.params.id;
 
   const filteredMeals = useMemo(() =>
     MEALS.filter((meal) => meal.categoryIds.includes(categoryId), [categoryId]),

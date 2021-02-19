@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, StyleSheet, Text} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 
 import CategoryItem from '../components/CategoryItem';
 
@@ -11,8 +11,6 @@ const renderGridItem = ({item}) => {
 };
 
 const CategoriesScreen = () => {
-  const navigation = useNavigation();
-
   return (
     <FlatList
       contentContainerStyle={[styles.screen]}

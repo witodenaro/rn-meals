@@ -24,15 +24,13 @@ const CategoryItem = (item) => {
     default: React.Fragment,
   });
 
-  console.log(TouchableComponent);
-
   return (
     <View style={styles.categoryItemContainer}>
       <View style={styles.categoryItemWrapper}>
         <TouchableComponent
           onPress={() =>
             navigation.navigate('CategoryMeals', {
-              categoryId: id,
+              id,
             })
           }
           {...Platform.select({
