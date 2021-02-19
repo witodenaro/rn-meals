@@ -1,14 +1,14 @@
 import React, {useEffect, useMemo} from 'react';
-import {SafeAreaView, StyleSheet, ScrollView, Platform} from 'react-native';
+import {SafeAreaView, StyleSheet, Platform} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
 
-import SCREENS from './screens/Screens';
+import SCREENS from './src/screens/Screens';
 
-import CATEGORIES from './mock/categories';
-import COLORS from './constants/Colors';
+import CATEGORIES from './src/mock/categories';
+import COLORS from './src/constants/Colors';
 
 const Stack = createStackNavigator();
 
