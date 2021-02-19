@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "container:"
+      name = "Fonts">
+      <FileRef
+         location = "group:../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf">
+      </FileRef>
+      <FileRef
+         location = "group:../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf">
+      </FileRef>
+   </Group>
    <FileRef
       location = "group:RNMeals.xcodeproj">
    </FileRef>

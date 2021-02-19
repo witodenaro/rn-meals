@@ -24,9 +24,7 @@ const CategoriesScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    justifyContent: 'flex-start',
-  },
+  screen: {},
 });
 
 export default CategoriesScreen;

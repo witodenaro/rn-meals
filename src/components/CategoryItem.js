@@ -35,7 +35,6 @@ const CategoryItem = (item) => {
               categoryId: id,
             })
           }
-          // background={TouchableNativeFeedback.Ripple(color, true)}
           {...Platform.select({
             android: {},
             default: {
@@ -43,10 +42,14 @@ const CategoryItem = (item) => {
             },
           })}>
           <TouchableChildComponent
-            style={[
-              styles.categoryItem,
-              {backgroundColor: color, overflow: 'hidden'},
-            ]}>
+            {...Platform.select({
+              android: {
+                style: [
+                  styles.categoryItem,
+                  {backgroundColor: color, overflow: 'hidden'},
+                ],
+              },
+            })}>
             <Text
               style={[
                 styles.categoryTitle,

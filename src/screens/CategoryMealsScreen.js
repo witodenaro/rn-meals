@@ -1,14 +1,32 @@
-import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, {useEffect, useMemo} from 'react';
+import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import {useNavigation, useRoute} from '@react-navigation/native';
+
+import MealItem from '../components/MealItem';
+
+import MEALS from '../mock/meals';
 
 const CategoryMealsScreen = () => {
   const navigation = useNavigation();
 
+  const route = useRoute();
+  const categoryId = route.params.categoryId;
+
+  const filteredMeals = useMemo(() =>
+    MEALS.filter((meal) => meal.categoryIds.includes(categoryId), [categoryId]),
+  );
+
+  const renderMealItem = ({item}) => <MealItem mealItem={item} />;
+
   return (
     <View style={styles.screen}>
-      <Text>{'abc'}</Text>
-      <Button title={'Go back'} onPress={() => navigation.goBack()} />
+      <FlatList
+        contentContainerStyle={{
+          padding: 20,
+        }}
+        data={filteredMeals}
+        renderItem={renderMealItem}
+      />
     </View>
   );
 };

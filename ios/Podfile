@@ -30,4 +30,7 @@ target 'RNMeals-tvOS' do
     inherit! :search_paths
     # Pods for testing
   end
+
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end
