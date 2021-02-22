@@ -26,6 +26,12 @@ function TabBar({state, descriptors, navigation}) {
         }
 
         const {options} = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
 
         const isFocused = state.index === index;
 
@@ -62,7 +68,18 @@ function TabBar({state, descriptors, navigation}) {
               color={isFocused ? COLORS.primary : COLORS.additional}
               solid
               size={25}
+              style={styles.icon}
             />
+            <Text
+              style={[
+                styles.text,
+                {
+                  color: isFocused ? COLORS.primary : COLORS.additional,
+                  height: 0,
+                },
+              ]}>
+              {label}
+            </Text>
           </TouchableOpacity>
         );
       })}
@@ -75,11 +92,13 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   button: {
-    marginRight: 10,
-    alignSelf: 'center',
+    flex: 1,
+    alignItems: 'center',
   },
+  icon: {},
 });
 
 export default TabBar;

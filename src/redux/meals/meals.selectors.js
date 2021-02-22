@@ -11,3 +11,8 @@ export const createSelectMealById = (mealId) =>
   createSelector(selectMealsData, (mealsData) =>
     mealsData.find((meal) => meal.id === mealId),
   );
+
+export const createMealsByIdsSelector = (mealIds) =>
+  createSelector(selectMealsData, (meals) => {
+    return meals.filter((meal) => mealIds.includes(meal.id));
+  });
