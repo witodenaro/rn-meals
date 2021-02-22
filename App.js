@@ -5,6 +5,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
 
+import BottomTabNavigator from './src/components/BottomTabNavigator';
+
 import SCREENS from './src/config/Screens';
 
 import COLORS from './src/constants/Colors';
@@ -39,31 +41,10 @@ const App = () => {
     SplashScreen.hide();
   }, []);
 
-  const renderedScreens = useMemo(
-    () =>
-      Object.keys(SCREENS).map((name) => {
-        const {title, Screen} = SCREENS[name];
-
-        return (
-          <Stack.Screen
-            key={name}
-            name={name}
-            component={Screen}
-            options={{title}}
-          />
-        );
-      }),
-    [SCREENS],
-  );
-
   return (
     <NavigationContainer>
       <SafeAreaView style={styles.screen}>
-        <Stack.Navigator
-          screenOptions={DefaultNavigationStyles}
-          initialRouteName="categories">
-          {renderedScreens}
-        </Stack.Navigator>
+        <BottomTabNavigator />
       </SafeAreaView>
     </NavigationContainer>
   );

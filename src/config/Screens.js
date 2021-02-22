@@ -1,29 +1,28 @@
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
+import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import FiltersScreen from '../screens/FiltersScreen';
-import MealDetails from '../screens/MealDetailsScreen';
 
 const SCREENS = {
   Categories: {
-    Screen: CategoriesScreen,
+    name: 'Categories',
     title: 'Meal categories',
+    component: CategoriesScreen,
   },
   CategoryMeals: {
-    Screen: CategoryMealsScreen,
-    title: 'Category',
-  },
-  Favorites: {
-    Screen: FavoritesScreen,
-    title: 'Favorite meals',
-  },
-  Filters: {
-    Screen: FiltersScreen,
-    title: 'Filters',
+    name: 'CategoryMeals',
+    title: 'Category meals',
+    component: CategoryMealsScreen,
   },
   MealDetails: {
-    Screen: MealDetails,
+    name: 'MealDetails',
     title: 'Meal details',
+    component: MealDetailsScreen,
+  },
+  Favorites: {
+    name: 'Favorites',
+    title: 'Favorite',
+    component: FavoritesScreen,
   },
 };
 

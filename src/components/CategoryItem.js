@@ -10,6 +10,8 @@ import {
   Platform,
 } from 'react-native';
 
+import SCREENS from '../config/Screens';
+
 const CategoryItem = (item) => {
   const {id, color, title} = item;
   const navigation = useNavigation();
@@ -29,7 +31,7 @@ const CategoryItem = (item) => {
       <View style={styles.categoryItemWrapper}>
         <TouchableComponent
           onPress={() =>
-            navigation.navigate('CategoryMeals', {
+            navigation.navigate(SCREENS.CategoryMeals.name, {
               id,
             })
           }
