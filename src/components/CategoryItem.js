@@ -66,8 +66,17 @@ const CategoryItem = (item) => {
 
 const styles = StyleSheet.create({
   categoryItemContainer: {
-    padding: 15,
+    margin: 15,
     flex: 1,
+    borderRadius: 20,
+    elevation: 8,
+    shadowOpacity: 0.26,
+    shadowColor: 'black',
+    shadowRadius: 4,
+    shadowOffset: {
+      height: 2,
+      width: 0,
+    },
   },
   categoryItemWrapper: {
     flex: 1,
@@ -81,14 +90,6 @@ const styles = StyleSheet.create({
     height: 130,
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    elevation: 5,
-    shadowOpacity: 0.26,
-    shadowColor: 'black',
-    shadowRadius: 4,
-    shadowOffset: {
-      height: 2,
-      width: 0,
-    },
     borderRadius: 20,
   },
   categoryTitle: {
