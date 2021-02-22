@@ -1,13 +1,17 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-
 import Colors from '../constants/Colors';
 import {Platform} from 'react-native';
 import SCREENS from '../config/Screens';
+import {useNavigation} from '@react-navigation/native';
+
+import HeaderMenuButton from '../components/HeaderMenuButton';
 
 const CategoriesStack = createStackNavigator();
 
 const CategoriesTab = () => {
+  const navigation = useNavigation();
+
   return (
     <CategoriesStack.Navigator
       initialRouteName={SCREENS.Categories.name}
@@ -30,6 +34,7 @@ const CategoriesTab = () => {
         component={SCREENS.Categories.component}
         options={{
           title: SCREENS.Categories.title,
+          headerLeft: () => <HeaderMenuButton navigation={navigation} />,
         }}
       />
       <CategoriesStack.Screen

@@ -18,7 +18,6 @@ const FiltersBottomTabNavigator = () => {
   return (
     <FiltersTab.Navigator
       initialRouteName="Filters"
-      shifting={true}
       {...Platform.select({
         android: {
           barStyle: {
@@ -29,11 +28,11 @@ const FiltersBottomTabNavigator = () => {
         },
       })}>
       <FiltersTab.Screen
-        key="Categories"
-        name="Categories"
+        key="Filters"
+        name="Filters"
         component={FiltersTabComponent}
         options={{
-          tabBarLabel: 'Categories',
+          tabBarLabel: 'Filters',
           tabBarIcon: ({color}) => (
             <Icon name="filter" size={20} color={color} />
           ),
