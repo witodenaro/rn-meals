@@ -1,6 +1,7 @@
-import React, {useEffect, useMemo} from 'react';
-import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useEffect, useMemo} from 'react';
+import {Button, FlatList, StyleSheet, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import useComponentWillMount from '../hooks/componentWillMount';
 
 import MealItem from '../components/MealItem';
 
@@ -19,11 +20,15 @@ const CategoryMealsScreen = () => {
     MEALS.filter((meal) => meal.categoryIds.includes(categoryId), [categoryId]),
   );
 
-  useEffect(() => {
+  const updateHeaderTitle = useCallback(() => {
     navigation.setOptions({
       title: categoryTitle,
     });
-  }, []);
+  }, [categoryTitle]);
+
+  useComponentWillMount(() => {
+    updateHeaderTitle();
+  });
 
   const renderMealItem = ({item}) => <MealItem mealItem={item} />;
 

@@ -44,7 +44,6 @@ const App = () => {
       Object.keys(SCREENS).map((name) => {
         const {title, Screen} = SCREENS[name];
 
-        console.log('SCREEN RENDER');
         return (
           <Stack.Screen
             key={name}
