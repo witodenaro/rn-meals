@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
 
-import BottomTabNavigator from './src/components/BottomTabNavigator';
+import DrawerNavigator from './src/components/navigators/DrawerNavigator';
 
 import SCREENS from './src/config/Screens';
 
@@ -44,7 +44,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <SafeAreaView style={styles.screen}>
-        <BottomTabNavigator />
+        <DrawerNavigator />
       </SafeAreaView>
     </NavigationContainer>
   );

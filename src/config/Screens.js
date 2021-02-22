@@ -2,6 +2,7 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailsScreen from '../screens/MealDetailsScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import FiltersScreen from '../screens/FiltersScreen';
 
 const SCREENS = {
   Categories: {
@@ -23,6 +24,11 @@ const SCREENS = {
     name: 'Favorites',
     title: 'Favorite',
     component: FavoritesScreen,
+  },
+  Filters: {
+    name: 'Filters',
+    title: 'Filters',
+    component: FiltersScreen,
   },
 };
 

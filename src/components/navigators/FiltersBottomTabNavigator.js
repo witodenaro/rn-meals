@@ -3,21 +3,21 @@ import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import CategoriesTab from '../tabs/CategoriesTab';
-import FavoritesTab from '../tabs/FavoritesTab';
-import Colors from '../constants/Colors';
+import FiltersTabComponent from '../../tabs/FiltersTab';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const BottomTab = Platform.select({
+import Colors from '../../constants/Colors';
+
+const FiltersTab = Platform.select({
   android: createMaterialBottomTabNavigator(),
   default: createBottomTabNavigator(),
 });
 
-const BottomTabNavigator = () => {
+const FiltersBottomTabNavigator = () => {
   return (
-    <BottomTab.Navigator
-      initialRouteName="Categories"
+    <FiltersTab.Navigator
+      initialRouteName="Filters"
       shifting={true}
       {...Platform.select({
         android: {
@@ -28,30 +28,20 @@ const BottomTabNavigator = () => {
           },
         },
       })}>
-      <BottomTab.Screen
+      <FiltersTab.Screen
         key="Categories"
         name="Categories"
-        component={CategoriesTab}
+        component={FiltersTabComponent}
         options={{
           tabBarLabel: 'Categories',
           tabBarIcon: ({color}) => (
-            <Icon name="utensils" size={20} color={color} />
+            <Icon name="filter" size={20} color={color} />
           ),
           tabBarColor: Colors.primary,
         }}
       />
-      <BottomTab.Screen
-        key="Favorites"
-        name="Favorites"
-        component={FavoritesTab}
-        options={{
-          tabBarLabel: 'Favorites',
-          tabBarIcon: ({color}) => <Icon name="star" size={20} color={color} />,
-          tabBarColor: Colors.secondary,
-        }}
-      />
-    </BottomTab.Navigator>
+    </FiltersTab.Navigator>
   );
 };
 
-export default BottomTabNavigator;
+export default FiltersBottomTabNavigator;

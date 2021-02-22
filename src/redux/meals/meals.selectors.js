@@ -1,5 +1,7 @@
 import {createSelector} from 'reselect';
 
+import {selectFavoriteMealsIds} from '../user/user.selectors';
+
 const selectMeals = (state) => state.meals;
 
 export const selectMealsData = createSelector(
@@ -12,7 +14,9 @@ export const createSelectMealById = (mealId) =>
     mealsData.find((meal) => meal.id === mealId),
   );
 
-export const createMealsByIdsSelector = (mealIds) =>
-  createSelector(selectMealsData, (meals) => {
-    return meals.filter((meal) => mealIds.includes(meal.id));
-  });
+export const selectFavoriteMeals = createSelector(
+  [selectMealsData, selectFavoriteMealsIds],
+  (meals, mealsIds) => {
+    return meals.filter((meal) => mealsIds.includes(meal.id));
+  },
+);

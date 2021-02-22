@@ -1,6 +1,13 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Platform} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Platform,
+  TouchableNativeFeedback,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useCallback} from 'react/cjs/react.development';
 import {createSelectMealById} from '../redux/meals/meals.selectors';
