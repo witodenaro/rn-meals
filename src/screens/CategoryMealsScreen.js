@@ -6,6 +6,7 @@ import MealItem from '../components/MealItem';
 
 import {useSelector} from 'react-redux';
 import {selectFilteredMeals} from '../redux/meals/meals.selectors';
+import DefaultText from '../components/DefaultText';
 
 const CategoryMealsScreen = () => {
   const route = useRoute();
@@ -19,17 +20,25 @@ const CategoryMealsScreen = () => {
 
   const renderMealItem = ({item}) => <MealItem mealItem={item} />;
 
-  return (
-    <View style={styles.screen}>
-      <FlatList
-        contentContainerStyle={{
-          padding: 20,
-        }}
-        data={filteredMeals}
-        renderItem={renderMealItem}
-      />
-    </View>
+  const renderedItems = useMemo(
+    () =>
+      filteredMeals.length > 0 ? (
+        <FlatList
+          contentContainerStyle={{
+            padding: 20,
+          }}
+          data={filteredMeals}
+          renderItem={renderMealItem}
+        />
+      ) : (
+        <DefaultText>
+          No meals were found. Try removing some filters.
+        </DefaultText>
+      ),
+    [filteredMeals.length > 0],
   );
+
+  return <View style={styles.screen}>{renderedItems}</View>;
 };
 
 const styles = StyleSheet.create({
