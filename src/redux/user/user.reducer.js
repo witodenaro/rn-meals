@@ -1,5 +1,7 @@
 import UserActionTypes from './user.types';
 import {addFavoriteMealId} from './user.utils';
+import {persistReducer} from 'redux-persist';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const initialState = {
   favoriteMealsIds: [],
@@ -26,4 +28,10 @@ const userReducer = (state = initialState, {type, payload}) => {
   }
 };
 
-export default userReducer;
+const persistConfig = {
+  key: 'RNMeals/User',
+  storage: AsyncStorage,
+  whitelist: ['favoriteMealsIds'],
+};
+
+export default persistReducer(persistConfig, userReducer);
