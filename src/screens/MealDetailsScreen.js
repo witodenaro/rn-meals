@@ -16,7 +16,6 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import AwesomeHeaderButton from '../components/AwesomeHeaderButton';
 import DefaultText from '../components/DefaultText';
 import Colors from '../constants/Colors';
-import {useMemo} from 'react';
 import {FlatList} from 'react-native-gesture-handler';
 
 const MealDetailsScreen = () => {
@@ -62,11 +61,13 @@ const MealDetailsScreen = () => {
   }, [favoriteClickHandler, isFavorite]);
 
   const renderIngredientItem = ({item}) => (
-    <DefaultText style={styles.ingredient}>{item}</DefaultText>
+    <View style={styles.card}>
+      <DefaultText>{item}</DefaultText>
+    </View>
   );
 
   const renderStepItem = ({item, index}) => (
-    <View style={styles.step}>
+    <View style={styles.card}>
       <DefaultText>
         {index + 1}. {item}
       </DefaultText>
@@ -213,15 +214,11 @@ const styles = StyleSheet.create({
     marginTop: 15,
     width: '80%',
   },
-  ingredient: {
-    marginTop: 5,
-    fontSize: 16,
-  },
   subtitle: {
     fontSize: 18,
     color: COLORS.primary,
   },
-  step: {
+  card: {
     marginTop: 10,
     padding: 10,
     backgroundColor: 'white',
