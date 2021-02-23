@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Image,
   Platform,
@@ -12,6 +11,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import COLORS from '../constants/Colors';
+import DefaultText from './DefaultText';
 
 const MealItem = ({mealItem}) => {
   const {id, title, imageUrl, affordability, complexity, duration} = mealItem;
@@ -57,18 +57,18 @@ const MealItem = ({mealItem}) => {
             style={[styles.image]}
           />
           <View style={styles.information}>
-            <Text style={styles.title}>{title}</Text>
+            <DefaultText style={styles.title}>{title}</DefaultText>
             <View style={styles.details}>
               <Icon style={styles.icon} name="tags" size={16} />
-              <Text>{affordability}</Text>
+              <DefaultText>{affordability}</DefaultText>
             </View>
             <View style={styles.details}>
               <Icon style={styles.icon} name="grin-beam-sweat" size={16} />
-              <Text>{complexity}</Text>
+              <DefaultText>{complexity}</DefaultText>
             </View>
             <View style={styles.details}>
               <Icon style={styles.icon} name="clock" size={16} />
-              <Text>{duration} minutes</Text>
+              <DefaultText>{duration} minutes</DefaultText>
             </View>
           </View>
         </View>

@@ -1,7 +1,9 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import SCREENS from '../config/Screens';
+
+import DefaultText from './DefaultText';
 
 import COLORS from '../constants/Colors';
 
@@ -70,7 +72,7 @@ function TabBar({state, descriptors, navigation}) {
               size={25}
               style={styles.icon}
             />
-            <Text
+            <DefaultText
               style={[
                 styles.text,
                 {
@@ -79,7 +81,7 @@ function TabBar({state, descriptors, navigation}) {
                 },
               ]}>
               {label}
-            </Text>
+            </DefaultText>
           </TouchableOpacity>
         );
       })}

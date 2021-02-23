@@ -21,6 +21,8 @@ const CategoriesTab = () => {
             ios: Colors.primary,
             default: 'white',
           }),
+          fontFamily: 'OpenSans-Bold',
+          letterSpacing: -1,
         },
         headerStyle: {
           backgroundColor: Platform.select({

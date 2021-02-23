@@ -2,13 +2,14 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {
   StyleSheet,
-  Text,
   TouchableOpacity,
   TouchableNativeFeedback,
   View,
   Dimensions,
   Platform,
 } from 'react-native';
+
+import DefaultText from './DefaultText';
 
 import SCREENS from '../config/Screens';
 
@@ -50,7 +51,7 @@ const CategoryItem = (item) => {
                 ],
               },
             })}>
-            <Text
+            <DefaultText
               style={[
                 styles.categoryTitle,
                 {
@@ -58,7 +59,7 @@ const CategoryItem = (item) => {
                 },
               ]}>
               {title}
-            </Text>
+            </DefaultText>
           </TouchableChildComponent>
         </TouchableComponent>
       </View>

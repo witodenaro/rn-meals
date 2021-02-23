@@ -1,13 +1,6 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Platform,
-  TouchableNativeFeedback,
-} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {useCallback} from 'react/cjs/react.development';
 import {createSelectMealById} from '../redux/meals/meals.selectors';
@@ -19,6 +12,12 @@ import {createIsMealIdFavoriteSelector} from '../redux/user/user.selectors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import COLORS from '../constants/Colors';
 import useComponentWillMount from '../hooks/componentWillMount';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import AwesomeHeaderButton from '../components/AwesomeHeaderButton';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+
+// title, affordability, complexity, imageUrl, duration, ingredients,
+// steps, isGlutenFree, isVegan, isVegetarian, isLactoseFree
 
 const MealDetailsScreen = () => {
   const route = useRoute();
@@ -46,19 +45,31 @@ const MealDetailsScreen = () => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <TouchableOpacity
-          style={styles.headerFavoriteButton}
-          onPress={favoriteClickHandler}>
-          <Icon
-            name="star"
-            size={20}
+        <HeaderButtons HeaderButtonComponent={AwesomeHeaderButton}>
+          <Item
+            title="Favorite"
+            iconName="star"
+            solid={isFavorite}
             color={Platform.select({
               ios: COLORS.primary,
               default: 'white',
             })}
-            solid={isFavorite}
+            onPress={favoriteClickHandler}
           />
-        </TouchableOpacity>
+        </HeaderButtons>
+        // <TouchableOpacity
+        //   style={styles.headerFavoriteButton}
+        //   onPress={favoriteClickHandler}>
+        //   <Icon
+        //     name="star"
+        //     size={20}
+        //     color={Platform.select({
+        //       ios: COLORS.primary,
+        //       default: 'white',
+        //     })}
+        //     solid={isFavorite}
+        //   />
+        // </TouchableOpacity>
       ),
     });
   }, [favoriteClickHandler, isFavorite]);
