@@ -5,6 +5,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const initialState = {
   favoriteMealsIds: [],
+  filters: {
+    isGlutenFree: false,
+    isVegan: false,
+    isLactoseFree: false,
+    isVegetarian: false,
+  },
 };
 
 const userReducer = (state = initialState, {type, payload}) => {
@@ -21,6 +27,16 @@ const userReducer = (state = initialState, {type, payload}) => {
         favoriteMealsIds: state.favoriteMealsIds.filter(
           (mealId) => mealId !== payload,
         ),
+      };
+
+    case UserActionTypes.SET_FILTERS:
+      console.log(payload);
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          ...payload,
+        },
       };
 
     default:

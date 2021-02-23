@@ -9,3 +9,8 @@ export const removeFavoriteMealId = (mealId) => ({
   type: UserActionTypes.REMOVE_FAVORITE_MEAL_ID,
   payload: mealId,
 });
+
+export const setFilters = (filters) => ({
+  type: UserActionTypes.SET_FILTERS,
+  payload: filters,
+});

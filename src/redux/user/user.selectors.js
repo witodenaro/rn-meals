@@ -11,3 +11,5 @@ export const createIsMealIdFavoriteSelector = (mealId) =>
     selectFavoriteMealsIds,
     (mealIds) => mealIds.indexOf(mealId) !== -1,
   );
+
+export const selectFilters = createSelector(selectUser, (user) => user.filters);

@@ -1,4 +1,6 @@
-import React from 'react';
+import {useNavigation} from '@react-navigation/native';
+import React, {useCallback} from 'react';
+import {useEffect} from 'react';
 import {useState} from 'react';
 import {
   StyleSheet,
@@ -6,13 +8,19 @@ import {
   View,
   Switch,
   TouchableWithoutFeedback,
+  Platform,
 } from 'react-native';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import {useDispatch, useSelector} from 'react-redux';
+import AwesomeHeaderButton from '../components/AwesomeHeaderButton';
 
 import DefaultText from '../components/DefaultText';
 import Colors from '../constants/Colors';
+import {setFilters} from '../redux/user/user.actions';
+import {selectFilters} from '../redux/user/user.selectors';
 
-const FilterSwitch = ({onValueChange, value, label}) => (
-  <TouchableWithoutFeedback onPress={() => onValueChange(!value)}>
+const FilterSwitch = ({toggleFilter, value, label}) => (
+  <TouchableWithoutFeedback onPress={toggleFilter}>
     <View style={styles.filterContainer}>
       <Text>{label}</Text>
       <Switch
@@ -22,36 +30,73 @@ const FilterSwitch = ({onValueChange, value, label}) => (
         }}
         thumbColor={'white'}
         value={value}
-        onValueChange={onValueChange}
+        onValueChange={toggleFilter}
       />
     </View>
   </TouchableWithoutFeedback>
 );
 
 const FiltersScreen = () => {
-  const [isGlutenFree, setIsGlutenFree] = useState(false);
-  const [isVegan, setIsVegan] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState(false);
-  const [isLactoseFree, setIsLactoseFree] = useState(false);
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
+  const [unsavedFilters, setUnsavedFilters] = useState({...filters});
+  const [hasChanges, setHasChanges] = useState(false);
+
+  const toggleFilter = (filterName) => {
+    if (!hasChanges) setHasChanges(true);
+
+    setUnsavedFilters({
+      ...unsavedFilters,
+      [filterName]: !unsavedFilters[filterName],
+    });
+  };
+
+  const saveFiltersChanges = () => {
+    dispatch(setFilters(unsavedFilters));
+    setHasChanges(false);
+  };
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () =>
+        hasChanges ? (
+          <HeaderButtons HeaderButtonComponent={AwesomeHeaderButton}>
+            <Item
+              iconName="save"
+              color={Platform.select({
+                ios: Colors.primary,
+                default: '#fff',
+              })}
+              onPress={saveFiltersChanges}
+            />
+          </HeaderButtons>
+        ) : null,
+    });
+  }, [saveFiltersChanges, hasChanges]);
 
   return (
     <View style={styles.screen}>
       <DefaultText style={styles.title}>Available Filters</DefaultText>
       <FilterSwitch
         label="Gluten free"
-        value={isGlutenFree}
-        onValueChange={setIsGlutenFree}
-      />
-      <FilterSwitch label="Vegan" value={isVegan} onValueChange={setIsVegan} />
-      <FilterSwitch
-        label="Vegetarian"
-        value={isVegetarian}
-        onValueChange={setIsVegetarian}
+        value={unsavedFilters.isGlutenFree}
+        toggleFilter={() => toggleFilter('isGlutenFree')}
       />
       <FilterSwitch
         label="Lactose free"
-        value={isLactoseFree}
-        onValueChange={setIsLactoseFree}
+        value={unsavedFilters.isLactoseFree}
+        toggleFilter={() => toggleFilter('isLactoseFree')}
+      />
+      <FilterSwitch
+        label="Vegan"
+        value={unsavedFilters.isVegan}
+        toggleFilter={() => toggleFilter('isVegan')}
+      />
+      <FilterSwitch
+        label="Vegetarian"
+        value={unsavedFilters.isVegetarian}
+        toggleFilter={() => toggleFilter('isVegetarian')}
       />
     </View>
   );
@@ -69,6 +114,7 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   title: {
+    marginTop: 10,
     fontSize: 22,
   },
 });

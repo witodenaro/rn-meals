@@ -5,11 +5,11 @@ import {useRoute} from '@react-navigation/native';
 import MealItem from '../components/MealItem';
 
 import {useSelector} from 'react-redux';
-import {selectMealsData} from '../redux/meals/meals.selectors';
+import {selectFilteredMeals} from '../redux/meals/meals.selectors';
 
 const CategoryMealsScreen = () => {
   const route = useRoute();
-  const meals = useSelector(selectMealsData);
+  const meals = useSelector(selectFilteredMeals);
 
   const categoryId = route.params.id;
 
