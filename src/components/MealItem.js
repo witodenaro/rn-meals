@@ -39,6 +39,7 @@ const MealItem = ({mealItem}) => {
   const onItemClick = useCallback(() => {
     navigation.navigate('MealDetails', {
       id,
+      title,
     });
   }, []);
 

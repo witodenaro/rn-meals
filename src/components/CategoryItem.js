@@ -34,6 +34,7 @@ const CategoryItem = (item) => {
           onPress={() =>
             navigation.navigate(SCREENS.CategoryMeals.name, {
               id,
+              title,
             })
           }
           {...Platform.select({

@@ -22,6 +22,7 @@ const FilterSwitch = ({onValueChange, value, label}) => (
         }}
         thumbColor={'white'}
         value={value}
+        onValueChange={onValueChange}
       />
     </View>
   </TouchableWithoutFeedback>

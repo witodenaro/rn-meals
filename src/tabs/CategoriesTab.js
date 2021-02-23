@@ -42,16 +42,16 @@ const CategoriesTab = () => {
       <CategoriesStack.Screen
         name={SCREENS.CategoryMeals.name}
         component={SCREENS.CategoryMeals.component}
-        options={{
-          title: SCREENS.CategoryMeals.title,
-        }}
+        options={({route}) => ({
+          title: route.params.title,
+        })}
       />
       <CategoriesStack.Screen
         name={SCREENS.MealDetails.name}
         component={SCREENS.MealDetails.component}
-        options={{
-          title: SCREENS.MealDetails.title,
-        }}
+        options={({route}) => ({
+          title: route.params.title,
+        })}
       />
     </CategoriesStack.Navigator>
   );

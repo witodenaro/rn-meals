@@ -11,7 +11,6 @@ import {
 import {createIsMealIdFavoriteSelector} from '../redux/user/user.selectors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import COLORS from '../constants/Colors';
-import useComponentWillMount from '../hooks/componentWillMount';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import AwesomeHeaderButton from '../components/AwesomeHeaderButton';
 import DefaultText from '../components/DefaultText';
@@ -34,12 +33,6 @@ const MealDetailsScreen = () => {
       dispatch(addFavoriteMealId(mealId));
     }
   }, [isFavorite]);
-
-  useComponentWillMount(() => {
-    navigation.setOptions({
-      title: meal.title,
-    });
-  });
 
   useEffect(() => {
     navigation.setOptions({
