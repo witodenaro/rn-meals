@@ -81,8 +81,11 @@ const styles = StyleSheet.create({
   itemWrapper: {
     minWidth: '100%',
     borderRadius: 20,
-    overflow: 'hidden',
     marginBottom: 20,
+    backgroundColor: 'white',
+    shadowRadius: 5,
+    shadowOpacity: 0.26,
+    elevation: 5,
   },
   item: {
     flex: 1,
@@ -93,6 +96,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
+    borderRadius: 15,
   },
   information: {
     padding: 20,
