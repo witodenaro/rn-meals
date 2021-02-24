@@ -15,7 +15,8 @@ const DrawerNavigator = () => {
       drawerContentOptions={{
         activeTintColor: Colors.primary,
         inactiveTintColor: Colors.additional,
-      }}>
+      }}
+      backBehavior="none">
       <Drawer.Screen name="Meals" component={MealsBottomTabNavigator} />
       <Drawer.Screen name="Filters" component={FiltersNavigator} />
     </Drawer.Navigator>
