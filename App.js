@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {SafeAreaView, StyleSheet, Platform, ScrollView} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';

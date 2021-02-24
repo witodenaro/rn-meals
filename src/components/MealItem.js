@@ -28,7 +28,7 @@ const MealItem = ({mealItem}) => {
     () =>
       isLoading ? (
         <ActivityIndicator
-          style={styles.loadingIndicator}
+          style={[styles.loadingIndicator, {transform: [{translateX: -16}]}]}
           color="#000"
           size="large"
         />
