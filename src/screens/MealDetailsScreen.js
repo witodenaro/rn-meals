@@ -53,14 +53,14 @@ const MealDetailsScreen = () => {
     });
   }, [favoriteClickHandler, isFavorite]);
 
-  const renderIngredientItem = ({item}) => (
-    <View style={styles.card}>
+  const renderIngredientItem = (item, index) => (
+    <View style={styles.card} key={'ingredient' + index}>
       <DefaultText>{item}</DefaultText>
     </View>
   );
 
-  const renderStepItem = ({item, index}) => (
-    <View style={styles.card}>
+  const renderStepItem = (item, index) => (
+    <View style={styles.card} key={'step' + index}>
       <DefaultText>
         {index + 1}. {item}
       </DefaultText>
@@ -120,19 +120,11 @@ const MealDetailsScreen = () => {
         </View>
         <View style={styles.container}>
           <DefaultText style={styles.subtitle}>Ingredients</DefaultText>
-          <FlatList
-            data={meal.ingredients}
-            keyExtractor={(item, index) => 'ingredient' + index}
-            renderItem={renderIngredientItem}
-          />
+          {meal.ingredients.map(renderIngredientItem)}
         </View>
         <View style={styles.container}>
           <DefaultText style={styles.subtitle}>Steps</DefaultText>
-          <FlatList
-            data={meal.steps}
-            keyExtractor={(item, index) => 'step' + index}
-            renderItem={renderStepItem}
-          />
+          {meal.steps.map(renderStepItem)}
         </View>
       </View>
     </ScrollView>
