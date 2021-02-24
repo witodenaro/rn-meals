@@ -23,7 +23,6 @@ const CategoriesTab = () => {
             default: 'white',
           }),
           fontFamily: 'OpenSans-Bold',
-          letterSpacing: -1,
         },
         headerStyle: {
           backgroundColor: Platform.select({

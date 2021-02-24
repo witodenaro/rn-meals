@@ -7,62 +7,40 @@ import {
   View,
   Dimensions,
   Platform,
+  Image,
 } from 'react-native';
 
 import DefaultText from './DefaultText';
 
 import SCREENS from '../config/Screens';
+import Colors from '../constants/Colors';
 
 const CategoryItem = (item) => {
-  const {id, color, title} = item;
+  const {id, title, imageUrl} = item;
   const navigation = useNavigation();
 
-  const TouchableComponent = Platform.select({
-    android: TouchableNativeFeedback,
-    default: TouchableOpacity,
-  });
-
-  const TouchableChildComponent = Platform.select({
-    android: View,
-    default: React.Fragment,
-  });
-
   return (
-    <View style={styles.categoryItemContainer}>
-      <View style={styles.categoryItemWrapper}>
-        <TouchableComponent
+    <View style={styles.categoryItemWrapper}>
+      <View style={styles.categoryItemContainer}>
+        <TouchableOpacity
           onPress={() =>
             navigation.navigate(SCREENS.CategoryMeals.name, {
               id,
               title,
             })
           }
-          {...Platform.select({
-            android: {},
-            default: {
-              style: [styles.categoryItem, {backgroundColor: color}],
-            },
-          })}>
-          <TouchableChildComponent
-            {...Platform.select({
-              android: {
-                style: [
-                  styles.categoryItem,
-                  {backgroundColor: color, overflow: 'hidden'},
-                ],
+          style={[styles.categoryItem, {backgroundColor: 'transparent'}]}>
+          <Image style={styles.backgroundImage} source={{uri: imageUrl}} />
+          <DefaultText
+            style={[
+              styles.categoryTitle,
+              {
+                fontSize: Dimensions.get('window').width > 350 ? 20 : 14,
               },
-            })}>
-            <DefaultText
-              style={[
-                styles.categoryTitle,
-                {
-                  fontSize: Dimensions.get('window').width > 350 ? 20 : 14,
-                },
-              ]}>
-              {title}
-            </DefaultText>
-          </TouchableChildComponent>
-        </TouchableComponent>
+            ]}>
+            {title}
+          </DefaultText>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -73,6 +51,18 @@ const styles = StyleSheet.create({
     margin: 15,
     flex: 1,
     borderRadius: 20,
+  },
+  categoryItemWrapper: {
+    flex: 1,
+    borderRadius: 20,
+  },
+  categoryItem: {
+    width: '100%',
+    marginRight: 'auto',
+    height: 130,
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    borderRadius: 20,
     elevation: 8,
     shadowOpacity: 0.26,
     shadowColor: 'black',
@@ -82,25 +72,21 @@ const styles = StyleSheet.create({
       width: 0,
     },
   },
-  categoryItemWrapper: {
-    flex: 1,
-    borderRadius: 20,
-    overflow: 'hidden',
-  },
-  categoryItem: {
-    padding: 10,
-    width: '100%',
-    marginRight: 'auto',
-    height: 130,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    borderRadius: 20,
-  },
   categoryTitle: {
     color: 'white',
-    textShadowRadius: 3,
     textShadowColor: 'black',
+    textShadowRadius: 5,
     textAlign: 'right',
+    fontFamily: 'OpenSans-Bold',
+    marginBottom: 10,
+    marginRight: 10,
+  },
+  backgroundImage: {
+    zIndex: -1,
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    borderRadius: 20,
   },
 });
 

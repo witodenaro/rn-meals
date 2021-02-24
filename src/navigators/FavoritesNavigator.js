@@ -22,6 +22,7 @@ const FavoritesTab = () => {
             ios: COLORS.secondary,
             default: 'white',
           }),
+          fontFamily: 'OpenSans-Bold',
         },
         headerStyle: {
           backgroundColor: Platform.select({
