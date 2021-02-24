@@ -3,9 +3,9 @@ import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import CategoriesTab from '../../tabs/CategoriesTab';
-import FavoritesTab from '../../tabs/FavoritesTab';
-import Colors from '../../constants/Colors';
+import CategoriesNavigator from './CategoriesNavigator';
+import FavoritesNavigator from './FavoritesNavigator';
+import Colors from '../constants/Colors';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -31,7 +31,7 @@ const MealsBottomTabNavigator = () => {
       <BottomTab.Screen
         key="Categories"
         name="Categories"
-        component={CategoriesTab}
+        component={CategoriesNavigator}
         options={{
           tabBarLabel: 'Categories',
           tabBarIcon: ({color}) => (
@@ -43,7 +43,7 @@ const MealsBottomTabNavigator = () => {
       <BottomTab.Screen
         key="Favorites"
         name="Favorites"
-        component={FavoritesTab}
+        component={FavoritesNavigator}
         options={{
           tabBarLabel: 'Favorites',
           tabBarIcon: ({color}) => <Icon name="star" size={20} color={color} />,

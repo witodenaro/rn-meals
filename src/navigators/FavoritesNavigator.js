@@ -39,7 +39,9 @@ const FavoritesTab = () => {
       <FavoritesStack.Screen
         name={SCREENS.MealDetails.name}
         component={SCREENS.MealDetails.component}
-        options={{}}
+        options={({route}) => ({
+          title: route.params.title,
+        })}
       />
     </FavoritesStack.Navigator>
   );

@@ -4,7 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {enableScreens} from 'react-native-screens';
 
-import DrawerNavigator from './src/components/navigators/DrawerNavigator';
+import DrawerNavigator from './src/navigators/DrawerNavigator';
 
 enableScreens();
 

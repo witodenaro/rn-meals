@@ -3,8 +3,8 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import MealsBottomTabNavigator from './MealsBottomTabNavigator';
-import FiltersBottomTabNavigator from './FiltersBottomTabNavigator';
-import Colors from '../../constants/Colors';
+import FiltersNavigator from './FiltersNavigator';
+import Colors from '../constants/Colors';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,7 +17,7 @@ const DrawerNavigator = () => {
         inactiveTintColor: Colors.additional,
       }}>
       <Drawer.Screen name="Meals" component={MealsBottomTabNavigator} />
-      <Drawer.Screen name="Filters" component={FiltersBottomTabNavigator} />
+      <Drawer.Screen name="Filters" component={FiltersNavigator} />
     </Drawer.Navigator>
   );
 };

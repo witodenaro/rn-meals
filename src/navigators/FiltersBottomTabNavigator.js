@@ -3,11 +3,11 @@ import {Platform} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 
-import FiltersTabComponent from '../../tabs/FiltersTab';
+import FiltersTabComponent from './FiltersNavigator';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import Colors from '../../constants/Colors';
+import Colors from '../constants/Colors';
 
 const FiltersTab = Platform.select({
   android: createMaterialBottomTabNavigator(),
