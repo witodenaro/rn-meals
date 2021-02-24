@@ -1,8 +1,7 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import {Platform, StyleSheet, Image, View, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {useCallback} from 'react/cjs/react.development';
 import {createSelectMealById} from '../redux/meals/meals.selectors';
 import {
   addFavoriteMealId,
@@ -15,7 +14,6 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import AwesomeHeaderButton from '../components/AwesomeHeaderButton';
 import DefaultText from '../components/DefaultText';
 import Colors from '../constants/Colors';
-import {FlatList} from 'react-native-gesture-handler';
 
 const MealDetailsScreen = () => {
   const route = useRoute();
