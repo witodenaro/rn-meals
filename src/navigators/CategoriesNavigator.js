@@ -6,6 +6,7 @@ import SCREENS from '../config/Screens';
 import {useNavigation} from '@react-navigation/native';
 
 import HeaderMenuButton from '../components/HeaderMenuButton';
+import HeaderBackButton from '../components/HeaderBackButton';
 
 const CategoriesStack = createStackNavigator();
 
@@ -30,6 +31,7 @@ const CategoriesTab = () => {
             default: Colors.primary,
           }),
         },
+        headerLeft: () => <HeaderBackButton navigation={navigation} />,
       }}>
       <CategoriesStack.Screen
         name={SCREENS.Categories.name}

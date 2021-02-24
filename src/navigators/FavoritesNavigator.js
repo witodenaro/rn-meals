@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SCREENS from '../config/Screens';
 
 import HeaderMenuButton from '../components/HeaderMenuButton';
+import HeaderBackButton from '../components/HeaderBackButton';
 
 import COLORS from '../constants/Colors';
 import {useNavigation} from '@react-navigation/native';
@@ -41,6 +42,7 @@ const FavoritesTab = () => {
         component={SCREENS.MealDetails.component}
         options={({route}) => ({
           title: route.params.title,
+          headerLeft: () => <HeaderBackButton navigation={navigation} />,
         })}
       />
     </FavoritesStack.Navigator>

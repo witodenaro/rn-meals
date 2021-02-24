@@ -27,7 +27,8 @@ const MealsBottomTabNavigator = () => {
             }),
           },
         },
-      })}>
+      })}
+      backBehavior="none">
       <BottomTab.Screen
         key="Categories"
         name="Categories"
